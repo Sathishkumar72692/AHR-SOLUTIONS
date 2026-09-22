@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrant HR Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#334e68',
+                            800: '#102a43',
+                            900: '#0a192f',
+                        },
+                        brandBlue: {
+                            500: '#0066cc',
+                            600: '#0052a3',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for smooth transitions */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .nav-link.active {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0066cc;
+        }
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#home" class="nav-logo flex items-center gap-2 cursor-pointer" onclick="navigateTo('home'); return false;">
+                        <div class="bg-brandBlue-500 text-white p-2 rounded-lg">
+                            <i class="fa-solid fa-users-viewfinder text-xl"></i>
+                        </div>
+                        <span class="font-bold text-2xl text-navy-900 tracking-tight">Arrant HR Solutions</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#home" onclick="navigateTo('home'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2 active">Home</a>
+                    <a href="#about" onclick="navigateTo('about'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">About Us</a>
+                    <a href="#services" onclick="navigateTo('services'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Services</a>
+                    <a href="#gallery" onclick="navigateTo('gallery'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Gallery</a>
+                    <a href="#jobs" onclick="navigateTo('jobs'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Jobs</a>
+                    <a href="#register" onclick="navigateTo('register'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Register Now</a>
+                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="px-5 py-2.5 bg-brandBlue-500 text-white rounded-full hover:bg-brandBlue-600 transition-colors shadow-md hover:shadow-lg font-medium">Contact Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brandBlue-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 shadow-inner">
+            <div class="px-4 pt-2 pb-4 space-y-1 sm:px-3 flex flex-col">
+                <a href="#home" onclick="navigateTo('home'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-brandBlue-500 bg-gray-50">Home</a>
+                <a href="#about" onclick="navigateTo('about'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">About Us</a>
+                <a href="#services" onclick="navigateTo('services'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Services</a>
+                <a href="#gallery" onclick="navigateTo('gallery'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Gallery</a>
+                <a href="#jobs" onclick="navigateTo('jobs'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Jobs</a>
+                <a href="#register" onclick="navigateTo('register'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Register Now</a>
+                <a href="#contact" onclick="navigateTo('contact'); return false;" class="mobile-nav-link block px-3 py-3 mt-2 rounded-md text-base font-medium bg-brandBlue-500 text-white text-center shadow">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-20">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="page-section active">
+            <!-- Hero Banner -->
+            <div class="relative bg-navy-900 text-white overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-navy-900 to-transparent"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col items-start min-h-[70vh] justify-center">
+                    <span class="inline-block py-1 px-3 rounded-full bg-brandBlue-600/30 border border-brandBlue-500 text-brandBlue-100 text-sm font-semibold tracking-wider mb-6 animate-slide-up">WE ARE HIRING!</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-3xl animate-slide-up" style="animation-delay: 0.1s;">
+                        Partnering with you for all your <span class="text-brandBlue-500">HR Needs</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
+                        Our mission is to empower organizations to create a positive and productive workplace culture, attract and retain top talent, and achieve their strategic goals through effective HR management. We are passionate about what we do and look forward to partnering with you to make a difference in your organization.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate-slide-up" style="animation-delay: 0.3s;">
+                        <button onclick="navigateTo('services')" class="px-8 py-4 bg-brandBlue-500 hover:bg-brandBlue-600 text-white rounded-md font-semibold transition-all shadow-lg hover:shadow-brandBlue-500/30 flex items-center gap-2">
+                            Our Services <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="navigateTo('contact')" class="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-navy-900 text-white rounded-md font-semibold transition-all">
+                            Get in Touch
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="bg-white py-16 lg:py-20 border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-navy-900 mb-4">Join Our Revolution</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12" id="stats-container">
+                        <div class="text-center p-6 rounded-2xl bg-gray-50 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brandBlue-100 text-brandBlue-600 mb-4 text-2xl">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-navy-900 mb-2 flex justify-center items-baseline">
+                                <span class="counter" data-target="300">0</span>+
+                            </h3>
+                            <p class="text-gray-600 font-medium">Training Programs</p>
+                        </div>
+                        
+                        <div class="text-center p-6 rounded-2xl bg-gray-50 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brandBlue-100 text-brandBlue-600 mb-4 text-2xl">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-navy-900 mb-2 flex justify-center items-baseline">
+                                <span class="counter" data-target="500">0</span>+
+                            </h3>
+                            <p class="text-gray-600 font-medium">Recruitments</p>
+                        </div>
+                        
+                        <div class="text-center p-6 rounded-2xl bg-gray-50 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brandBlue-100 text-brandBlue-600 mb-4 text-2xl">
+                                <i class="fa-solid fa-building-user"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-navy-900 mb-2 flex justify-center items-baseline">
+                                <span class="counter" data-target="80">0</span>+
+                            </h3>
+                            <p class="text-gray-600 font-medium">Job Fairs</p>
+                        </div>
+                        
+                        <div class="text-center p-6 rounded-2xl bg-gray-50 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brandBlue-100 text-brandBlue-600 mb-4 text-2xl">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-navy-900 mb-2 flex justify-center items-baseline">
+                                <span class="counter" data-target="4000">0</span>+
+                            </h3>
+                            <p class="text-gray-600 font-medium">Candidates Counselled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION (Updated Content) -->
+        <section id="about" class="page-section">
+            <div class="bg-gray-50 py-16 lg:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center mb-16">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Who We Are</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">About Arrant HR Solutions</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                    </div>
+
+                    <!-- Company History -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
+                        <h3 class="text-2xl font-bold text-navy-900 mb-6">Our Journey</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            We are an innovative full-service Human Resources consultancy offering a broad spectrum of professional services. Established in the year March 2008, <strong>"ARRANT HR Solutions"</strong> has emerged as a professionally managed and renowned HR recruitment consultancy firm in Tamil Nadu. A team of HR professionals from reputed management institutes mans the company with expertise in the area of Career Counseling, Recruitment (National & International), Training and Development, Eventz, and Digital Marketing.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            In a short span of time, we understand our client's business and had been successfully delivering to their ongoing demands, in IT/ITES, Engineering, Construction, Mechanical, Pharmaceutical, Educational Institutions, Hospital, FMCG, Banking & Finance, Healthcare, etc. domains, taking time and care to understand client's strategies and goals as well as their recruitment needs. We are specialized in talent acquisitions & executive search & have expertise in headhunting the right talent for the right job.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            We also encompass a database of potential and result-oriented candidates across India. We aim to provide personalized attention on shortlisting, collecting, and maintaining the best data bank based on market demand as well as strong linkages with academia and workplace professionalism. ARRANT HR Solutions has extended its footing into big corporate houses and other industries. We stand as a national and international supplier with a wholly-owned company structure. This organizational structure facilitates centralized decision-making and ensures consistent implementation of all corporate directives and customer-specific service delivery. It also enables us to provide our vendors with the most responsive and focused service possible.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Our endeavor is to recruit high-caliber professionals across all functional areas thereby maintaining a very strong and premium data bank of candidates. Our rigorous screening procedure ensures quality output within specific timeframes. In fact, our clients can rely on us to handle even the most critical requirements in the shortest possible time, which is of paramount importance in these evolving times.
+                        </p>
+                        <div class="bg-brandBlue-50 border-l-4 border-brandBlue-500 p-6 rounded-r-lg">
+                            <p class="text-navy-900 font-medium leading-relaxed">
+                                ARRANT HR Solutions is committed to building talent within your organization, allowing you to extend sustainable service excellence to your Clients. We also recognize that attracting, selecting, and managing this pool of caliber candidates is a key factor in achieving this and many other critical goals within your organization and have therefore developed a customized solution that we feel will support this aim. Our aim is to delight our clients with our efficient services as well as put them at ease with their recruiting hassles.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Leadership Profile -->
+                    <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 mb-16 flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-4 border-brandBlue-100 flex items-center justify-center text-gray-400 text-6xl shadow-inner">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-3xl font-bold text-navy-900 mb-2">Dr. Anusha Ursula</h3>
+                            <p class="text-brandBlue-600 font-semibold mb-4 text-lg">Director at Metaspace Solutions P Limited & Founder / CEO of ARRANT HR Solutions</p>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                With a strong educational background in English, I hold a BA, MA, and a PhD (Hons) degree. Over the past 8 years, I have gained valuable experience in HR, Training, Recruitment, and Corporate Affairs located in Tiruchirappalli.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-handshake text-brandBlue-500 mt-1"></i>
+                                    <p class="text-sm text-gray-600">Conducted more than <strong>31 job fairs</strong> in association with the Government of Tamil Nadu, Bharathidasan University, and private educational institutes and corporates.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-chalkboard-user text-brandBlue-500 mt-1"></i>
+                                    <p class="text-sm text-gray-600">Trained over <strong>500 Arts & Science students</strong> and conducted <strong>30+ Faculty Development Programs</strong> and <strong>35+ Online Sessions</strong> for various institutions.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-sitemap text-brandBlue-500 mt-1"></i>
+                                    <p class="text-sm text-gray-600">An active member of the National Human Resource Development Network (NHRD) as the <strong>Joint Secretary</strong> for the Trichy Chapter.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-lightbulb text-brandBlue-500 mt-1"></i>
+                                    <p class="text-sm text-gray-600">Serving as an <strong>Advisor/Mentor</strong> for WEAT & Bhaarat Consultancy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vision and Mission -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                        <div class="bg-navy-900 text-white rounded-2xl p-10 shadow-xl relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-brandBlue-600 rounded-full opacity-20 blur-3xl group-hover:opacity-40 transition-opacity"></div>
+                            <i class="fa-solid fa-eye text-5xl text-brandBlue-400 mb-6 relative z-10"></i>
+                            <h3 class="text-3xl font-bold mb-4 relative z-10">Vision</h3>
+                            <p class="text-gray-300 leading-relaxed relative z-10 italic">
+                                "Our vision is to revolutionize the HR industry by providing cutting-edge technology and services that transform the way organizations manage their people. We aim to become the leading HR solution provider, recognized for our innovative and intuitive products, exceptional customer service, and unparalleled industry expertise. We envision a future where HR processes are streamlined, employee engagement is optimized, and organizations can make data-driven decisions that improve their bottom line. We are dedicated to empowering HR professionals and creating a more efficient and productive workforce for all."
+                            </p>
+                        </div>
+                        <div class="bg-brandBlue-600 text-white rounded-2xl p-10 shadow-xl relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white rounded-full opacity-10 blur-3xl group-hover:opacity-20 transition-opacity"></div>
+                            <i class="fa-solid fa-bullseye text-5xl text-white/80 mb-6 relative z-10"></i>
+                            <h3 class="text-3xl font-bold mb-4 relative z-10">Mission</h3>
+                            <p class="text-white/90 leading-relaxed relative z-10 italic">
+                                "Our mission is to provide innovative and reliable HR solutions that empower organizations to effectively manage their workforce. We are committed to delivering user-friendly, customizable, and scalable HR software that simplifies HR processes, enhance employee engagement, and enables data-driven decision making. We strive to partner with our clients to create a positive and productive workplace culture that attracts and retains top talent."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Why Arrant Solutions -->
+                    <div class="mb-16">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl font-bold text-navy-900 mb-4">Why Arrant Solutions</h2>
+                            <p class="text-gray-600 max-w-2xl mx-auto">At ARRANT HR Solutions, we believe that we are an extension of our client's HR team and must perform as a responsible representative of their organization.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Reason 1 -->
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl mb-6">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-3">Team Power</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">This calls for our team to possess sensitivity, rigor and demands a high degree of positioning and persuasion skills. At ARRANT HR Solutions, the client will always have the advantage of dealing with the best-suited consultant committed to providing the highest level of service.</p>
+                            </div>
+                            <!-- Reason 2 -->
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl mb-6">
+                                    <i class="fa-solid fa-puzzle-piece"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-3">Customized Solutions</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">We understand that the requirement of each client is unique, so we provide fresh perspective & young talent of management professionals. We perform our best to provide customized solutions considering Clients’ corporate culture, management style, and philosophy.</p>
+                            </div>
+                            <!-- Reason 3 -->
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl mb-6">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-3">Cost-effective Quality</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">We believe each penny of our client should run through the most remunerative channel. We provide effective HR solutions towards profit maximization globally, practicing 6σ tools (DMAIC approach) for continuous improvement.</p>
+                            </div>
+                            <!-- Reason 4 -->
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl mb-6">
+                                    <i class="fa-solid fa-ranking-star"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-3">Value Added Services</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">We feel responsible for providing information related to market intelligence, candidate insight, and industry reference. Our services include consultation in strategy for recruitment, structure review, competency mapping, Head Hunting, and interview processes.</p>
+                            </div>
+                            <!-- Reason 5 -->
+                            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 lg:col-span-2 xl:col-span-1">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl mb-6">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-navy-900 mb-3">Speed</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">We set time frames at the beginning of the search after understanding its complexity & urgency. We conduct constant follow-ups with clients to understand the time frame for a complete search process, committed to serving within the shortest span of time.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Memberships -->
+                    <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-100 text-center">
+                        <h3 class="text-2xl font-bold text-navy-900 mb-8">Memberships & Affiliations</h3>
+                        <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                            <div class="px-6 py-4 bg-gray-50 border border-gray-200 rounded-lg text-navy-900 font-semibold hover:bg-brandBlue-50 hover:border-brandBlue-200 transition-colors flex items-center gap-3">
+                                <i class="fa-solid fa-certificate text-brandBlue-500"></i> Confederation of Indian Industry
+                            </div>
+                            <div class="px-6 py-4 bg-gray-50 border border-gray-200 rounded-lg text-navy-900 font-semibold hover:bg-brandBlue-50 hover:border-brandBlue-200 transition-colors flex items-center gap-3">
+                                <i class="fa-solid fa-certificate text-brandBlue-500"></i> Indian Society of Training and Development
+                            </div>
+                            <div class="px-6 py-4 bg-gray-50 border border-gray-200 rounded-lg text-navy-900 font-semibold hover:bg-brandBlue-50 hover:border-brandBlue-200 transition-colors flex items-center gap-3">
+                                <i class="fa-solid fa-certificate text-brandBlue-500"></i> National Human Resource Development (Trichy Chapter)
+                            </div>
+                            <div class="px-6 py-4 bg-gray-50 border border-gray-200 rounded-lg text-navy-900 font-semibold hover:bg-brandBlue-50 hover:border-brandBlue-200 transition-colors flex items-center gap-3">
+                                <i class="fa-solid fa-certificate text-brandBlue-500"></i> Counsellor Council of India
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="page-section">
+            <div class="py-16 lg:py-24 bg-white min-h-[80vh]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">What We Do</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Our Services</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Service 1 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Recruitment</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients' needs and goes on further for fulfillment.
+                            </p>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Training and Development</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                We deal with methods aimed to design and implement training. It must be separated from the "method" because it is a body of practices, procedures, and rules for disciplines.
+                            </p>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Career Counselling</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Creating room for self-exploration. Our Career Counselors get to know their clients and give them the space to talk through issues affecting their career and choices.
+                            </p>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Event Management</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                We look at the tools out in front of us and expect them to provide all capabilities needed, checking off all requirements to handle events seamlessly.
+                            </p>
+                        </div>
+
+                        <!-- Service 5 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Digital Marketing</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Our objective is to increase visitors to your tech site or create awareness about your product/service. The journey includes nurturing visitors into qualified leads.
+                            </p>
+                        </div>
+                        
+                        <!-- Extra Card for Visual Balance -->
+                        <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center text-white">
+                            <h3 class="text-2xl font-bold mb-4">Need Custom Solutions?</h3>
+                            <p class="mb-6 opacity-90">Let's discuss how we can tailor our services to fit your specific organizational needs.</p>
+                            <button onclick="navigateTo('contact')" class="px-6 py-2 bg-white text-brandBlue-600 rounded-full font-semibold hover:bg-gray-100 transition">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION (Placeholder) -->
+        <section id="gallery" class="page-section">
+            <div class="py-24 bg-gray-50 min-h-[80vh] flex flex-col items-center justify-center text-center">
+                <i class="fa-solid fa-images text-6xl text-gray-300 mb-6"></i>
+                <h2 class="text-3xl font-bold text-navy-900 mb-4">Our Gallery</h2>
+                <p class="text-gray-500 max-w-md mx-auto">Explore moments from our job fairs, training programs, and corporate events. Content coming soon.</p>
+            </div>
+        </section>
+
+        <!-- JOBS SECTION (Placeholder) -->
+        <section id="jobs" class="page-section">
+            <div class="py-24 bg-white min-h-[80vh] flex flex-col items-center justify-center text-center">
+                <i class="fa-solid fa-briefcase text-6xl text-gray-300 mb-6"></i>
+                <h2 class="text-3xl font-bold text-navy-900 mb-4">Current Openings</h2>
+                <p class="text-gray-500 max-w-md mx-auto">We are constantly looking for top talent. Check back later for our updated job listings board.</p>
+            </div>
+        </section>
+
+        <!-- REGISTER SECTION (Placeholder) -->
+        <section id="register" class="page-section">
+            <div class="py-24 bg-gray-50 min-h-[80vh] flex flex-col items-center justify-center text-center px-4">
+                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-xl w-full">
+                    <i class="fa-solid fa-id-card text-5xl text-brandBlue-500 mb-6"></i>
+                    <h2 class="text-3xl font-bold text-navy-900 mb-4">Candidate Registration</h2>
+                    <p class="text-gray-600 mb-8">Register with Arrant HR Solutions to stay updated on the latest job opportunities matching your profile.</p>
+                    <form class="space-y-4 text-left" onsubmit="event.preventDefault(); alert('Registration functionality will be implemented soon.');">
+                        <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
+                        <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
+                        <button type="submit" class="w-full py-3 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition">Register Now</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="py-16 lg:py-24 bg-white min-h-[80vh]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Reach Out</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Contact Us</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Contact Information -->
+                        <div class="bg-navy-900 text-white rounded-2xl p-8 md:p-10 shadow-xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-brandBlue-600 rounded-full opacity-20 blur-3xl"></div>
+                            
+                            <h3 class="text-2xl font-bold mb-8 relative z-10">Get in Touch</h3>
+                            
+                            <div class="space-y-8 relative z-10">
+                                <!-- Address Trichy -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-location-dot text-brandBlue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-brandBlue-300 mb-1">Trichy Office</h4>
+                                        <p class="text-gray-300 leading-relaxed">C-82, 4th Cross, Thillainagar,<br>Trichy - 620018</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Address Chennai -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-building text-brandBlue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-brandBlue-300 mb-1">Chennai Office</h4>
+                                        <p class="text-gray-300 leading-relaxed">19/11, First Floor, Little Mount,<br>Chennai - 600105</p>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Info -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-phone text-brandBlue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-brandBlue-300 mb-1">Phone</h4>
+                                        <p class="text-gray-300">+91 9944491097</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-envelope text-brandBlue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-brandBlue-300 mb-1">Email</h4>
+                                        <p class="text-gray-300">arrant.hr@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-clock text-brandBlue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-brandBlue-300 mb-1">Operating Hours</h4>
+                                        <p class="text-gray-300">Mon-Sat<br>10:00 AM to 06:00 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Form -->
+                        <div class="bg-gray-50 rounded-2xl p-8 md:p-10 shadow-sm border border-gray-200">
+                            <h3 class="text-2xl font-bold text-navy-900 mb-6">Send us a Message</h3>
+                            <form class="space-y-6" onsubmit="event.preventDefault(); showMessage('Message sent successfully! We will get back to you shortly.');">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:border-transparent transition-shadow">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                    <input type="email" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:border-transparent transition-shadow">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                    <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:border-transparent transition-shadow">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                    <textarea rows="4" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:border-transparent transition-shadow resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-4 bg-brandBlue-500 hover:bg-brandBlue-600 text-white font-bold rounded-lg transition-colors shadow-md hover:shadow-lg">
+                                    Send Message <i class="fa-regular fa-paper-plane ml-2"></i>
+                                </button>
+                            </form>
+                            <!-- Custom Alert Box (Hidden by default) -->
+                            <div id="form-alert" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg text-center font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 pt-16 pb-8 border-t-4 border-brandBlue-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="bg-brandBlue-500 text-white p-2 rounded-lg">
+                            <i class="fa-solid fa-users-viewfinder text-xl"></i>
+                        </div>
+                        <span class="font-bold text-2xl text-white tracking-tight">Arrant HR Solutions</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+                        We are a team of HR professionals and technology experts committed to providing comprehensive and customizable HR solutions to businesses of all sizes.
+                    </p>
+                    <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 py-2 px-4 rounded-full text-brandBlue-400">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span class="text-sm font-semibold tracking-wide">Registered with Authorities</span>
+                    </div>
+                </div>
+
+                <!-- SiteMap -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">SiteMap</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" onclick="navigateTo('about'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> About Us</a></li>
+                        <li><a href="#services" onclick="navigateTo('services'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> Our Services</a></li>
+                        <li><a href="#jobs" onclick="navigateTo('jobs'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> Jobs</a></li>
+                        <li><a href="#gallery" onclick="navigateTo('gallery'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> Gallery</a></li>
+                        <li><a href="#register" onclick="navigateTo('register'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> Register Now</a></li>
+                        <li><a href="#contact" onclick="navigateTo('contact'); return false;" class="text-gray-400 hover:text-brandBlue-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Contact -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Quick Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <i class="fa-solid fa-phone mt-1 text-brandBlue-400"></i>
+                            <span>+91 9944491097</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <i class="fa-solid fa-envelope mt-1 text-brandBlue-400"></i>
+                            <span>arrant.hr@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <i class="fa-solid fa-location-dot mt-1 text-brandBlue-400"></i>
+                            <span class="text-sm">Trichy: C-82, 4th Cross, Thillainagar<br>Chennai: 19/11, First Floor, Little Mount</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; <span id="year"></span> Arrant HR Solutions. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0">Developed by <span class="text-brandBlue-400 font-semibold">Dheepspark</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Navigation Logic (SPA Routing)
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+            });
+
+            // Show target section
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update Desktop Nav Links Active State
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.classList.remove('text-brandBlue-500', 'font-semibold');
+                link.classList.add('text-gray-600');
+                
+                // Compare href to pageId
+                if (link.getAttribute('href') === '#' + pageId) {
+                    link.classList.add('active');
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-brandBlue-500');
+                }
+            });
+
+            // Update Mobile Nav Links Active State
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                if(!link.classList.contains('bg-brandBlue-500')) { // skip the styled contact button
+                    link.classList.remove('text-brandBlue-500', 'bg-gray-50');
+                    link.classList.add('text-gray-700');
+                    if (link.getAttribute('href') === '#' + pageId) {
+                        link.classList.add('text-brandBlue-500', 'bg-gray-50');
+                        link.classList.remove('text-gray-700');
+                    }
+                }
+            });
+
+            // Close Mobile Menu if open
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+
+            // Scroll to top of the page smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // If navigating to home, reset and re-trigger counters
+            if(pageId === 'home') {
+                resetCounters();
+            }
+        }
+
+        // Animated Statistics Counter Logic using Intersection Observer
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // The lower the slower
+
+        function startCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const inc = target / speed;
+
+                let count = 0;
+                
+                // Ensure it counts up smoothly
+                const updateCount = () => {
+                    count += inc;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        }
+
+        function resetCounters() {
+             counters.forEach(counter => {
+                 counter.innerText = '0';
+             });
+        }
+
+        // Observe when the stats section is in view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 // Trigger when 50% visible
+        };
+
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                } else {
+                    resetCounters();
+                }
+            });
+        }, observerOptions);
+
+        // Target the stats container to observe
+        const statsContainer = document.getElementById('stats-container');
+        if(statsContainer) {
+            statsObserver.observe(statsContainer);
+        }
+
+        // Custom Message Box Function
+        function showMessage(msg) {
+            const alertBox = document.getElementById('form-alert');
+            alertBox.textContent = msg;
+            alertBox.classList.remove('hidden');
+            
+            // hide after 3 seconds
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 3000);
+            
+            // Reset form
+            document.querySelector('#contact form').reset();
+        }
+
+        // Initialize Application
+        window.onload = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        };
+    </script>
+</body>
+</html>
