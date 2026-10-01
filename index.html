@@ -88,14 +88,16 @@
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <a href="#home" class="nav-logo flex items-center gap-2 cursor-pointer" onclick="navigateTo('home'); return false;">
-                        <div class="bg-brandBlue-500 text-white p-2 rounded-lg">
-                            <i class="fa-solid fa-users-viewfinder text-xl"></i>
-                        </div>
-                        <span class="font-bold text-2xl text-navy-900 tracking-tight">Arrant HR Solutions</span>
-                    </a>
-                </div>
+                
+               <div class="flex items-center">
+    <a href="#home" class="nav-logo flex items-center gap-2 cursor-pointer" onclick="navigateTo('home'); return false;">
+        <!-- Company Logo on the left with attractive border -->
+        <img src="AHR.png" alt="Company Logo" class="h-12 w-auto object-contain border-2 border-brandBlue-500 rounded-lg p-1 shadow-sm bg-white">
+        
+        <!-- Company Name -->
+        <span class="font-bold text-2xl text-navy-900 tracking-tight">Arrant HR Solutions</span>
+    </a>
+</div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -588,68 +590,69 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Service 1 -->
-                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-4">Recruitment</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients' needs and goes on further for fulfillment.
-                            </p>
-                        </div>
+    <!-- Service 1: Recruitment -->
+    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+        <img src="recruitment.png" alt="Recruitment" class="w-full h-56 object-cover">
+        <div class="p-8 flex-grow flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Recruitment</h3>
+            <p class="text-gray-600 leading-relaxed">
+                ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients' needs and goes on further for fulfillment.
+            </p>
+        </div>
+    </div>
 
-                        <!-- Service 2 -->
-                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-person-chalkboard"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-4">Training and Development</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                We deal with methods aimed to design and implement training. It must be separated from the "method" because it is a body of practices, procedures, and rules for disciplines.
-                            </p>
-                        </div>
+    <!-- Service 2: Training and Development -->
+    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+        <img src="training.png" alt="Training and Development" class="w-full h-56 object-cover">
+        <div class="p-8 flex-grow flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Training and Development</h3>
+            <p class="text-gray-600 leading-relaxed">
+                We deal with methods aimed to design and implement training. It must be separated from the "method" because it is a body of practices, procedures, and rules for disciplines.
+            </p>
+        </div>
+    </div>
 
-                        <!-- Service 3 -->
-                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-compass"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-4">Career Counselling</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Creating room for self-exploration. Our Career Counselors get to know their clients and give them the space to talk through issues affecting their career and choices.
-                            </p>
-                        </div>
+    <!-- Service 3: Career Counselling -->
+    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+        <img src="career counselling.png" alt="Career Counselling" class="w-full h-56 object-cover">
+        <div class="p-8 flex-grow flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Career Counselling</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Creating room for self-exploration. Our Career Counselors get to know their clients and give them the space to talk through issues affecting their career and choices.
+            </p>
+        </div>
+    </div>
 
-                        <!-- Service 4 -->
-                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-calendar-check"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-4">Event Management</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                We look at the tools out in front of us and expect them to provide all capabilities needed, checking off all requirements to handle events seamlessly.
-                            </p>
-                        </div>
+    <!-- Service 4: Event Management -->
+    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+        <img src="event management.png" alt="Event Management" class="w-full h-56 object-cover">
+        <div class="p-8 flex-grow flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Event Management</h3>
+            <p class="text-gray-600 leading-relaxed">
+                We look at the tools out in front of us and expect them to provide all capabilities needed, checking off all requirements to handle events seamlessly.
+            </p>
+        </div>
+    </div>
 
-                        <!-- Service 5 -->
-                        <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                            <div class="w-16 h-16 bg-white rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:bg-brandBlue-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-bullhorn"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-4">Digital Marketing</h3>
-                            <p class="text-gray-600 leading-relaxed">
-                                Our objective is to increase visitors to your tech site or create awareness about your product/service. The journey includes nurturing visitors into qualified leads.
-                            </p>
-                        </div>
-                        
-                        <!-- Extra Card for Visual Balance -->
-                        <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center text-white">
-                            <h3 class="text-2xl font-bold mb-4">Need Custom Solutions?</h3>
-                            <p class="mb-6 opacity-90">Let's discuss how we can tailor our services to fit your specific organizational needs.</p>
-                            <button onclick="navigateTo('contact')" class="px-6 py-2 bg-white text-brandBlue-600 rounded-full font-semibold hover:bg-gray-100 transition">Contact Us</button>
-                        </div>
-                    </div>
+    <!-- Service 5: Digital Marketing -->
+    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+        <img src="digital marketing.png" alt="Digital Marketing" class="w-full h-56 object-cover">
+        <div class="p-8 flex-grow flex flex-col items-center text-center">
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Digital Marketing</h3>
+            <p class="text-gray-600 leading-relaxed">
+                Our objective is to increase visitors to your tech site or create awareness about your product/service. The journey includes nurturing visitors into qualified leads.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Extra Card for Visual Balance -->
+    <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center text-white">
+        <h3 class="text-2xl font-bold mb-4">Need Custom Solutions?</h3>
+        <p class="mb-6 opacity-90">Let's discuss how we can tailor our services to fit your specific organizational needs.</p>
+        <button onclick="navigateTo('contact')" class="px-6 py-2 bg-white text-brandBlue-600 rounded-full font-semibold hover:bg-gray-100 transition">Contact Us</button>
+    </div>
+</div>
+               
                 </div>
             </div>
         </section>
