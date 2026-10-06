@@ -45,6 +45,7 @@
             }
         }
     </script>
+    
     <style>
         /* Custom Styles for smooth transitions */
         .page-section {
@@ -80,9 +81,30 @@
             max-height: 400px;
             opacity: 1;
         }
+        
+        /* Marquee Animation Styles */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0%); }
+        }
+        .animate-marquee {
+            animation: marquee 90s linear infinite;
+        }
+        .animate-marquee-reverse {
+            animation: marquee-reverse 90s linear infinite;
+        }
+        /* Pause animation on hover */
+        .marquee-wrapper:hover .animate-marquee,
+        .marquee-wrapper:hover .animate-marquee-reverse {
+            animation-play-state: paused;
+        }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="font-sans bg-gray-50 text-gray-800 flex flex-col min-h-screen overflow-x-hidden">
 
     <!-- Navigation -->
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
@@ -90,14 +112,14 @@
             <div class="flex justify-between h-20">
                 
                <div class="flex items-center">
-    <a href="#home" class="nav-logo flex items-center gap-2 cursor-pointer" onclick="navigateTo('home'); return false;">
-        <!-- Company Logo on the left with attractive border -->
-        <img src="AHR.png" alt="Company Logo" class="h-12 w-auto object-contain border-2 border-brandBlue-500 rounded-lg p-1 shadow-sm bg-white">
-        
-        <!-- Company Name -->
-        <span class="font-bold text-2xl text-navy-900 tracking-tight">Arrant HR Solutions</span>
-    </a>
-</div>
+                    <a href="#home" class="nav-logo flex items-center gap-2 cursor-pointer" onclick="navigateTo('home'); return false;">
+                        <!-- Company Logo on the left with attractive border -->
+                        <img src="AHR.png" alt="Company Logo" class="h-12 w-auto object-contain border-2 border-brandBlue-500 rounded-lg p-1 shadow-sm bg-white" onerror="this.src='https://via.placeholder.com/150x50?text=Logo'">
+                        
+                        <!-- Company Name -->
+                        <span class="font-bold text-2xl text-navy-900 tracking-tight">Arrant HR Solutions</span>
+                    </a>
+                </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -134,7 +156,7 @@
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow pt-20">
+    <main class="flex-grow pt-20 overflow-hidden">
         
         <!-- HOME SECTION -->
         <section id="home" class="page-section active">
@@ -213,101 +235,102 @@
                     </div>
                 </div>
             </div>
+
             <!-- Dynamic Services Preview Section for Home Page -->
-<div class="bg-gray-50 py-16 lg:py-24 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 animate-slide-up">
-            <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">What We Do</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Our Core Services</h2>
-            <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Recruitment -->
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-user-tie"></i>
+            <div class="bg-gray-50 py-16 lg:py-24 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-slide-up">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">What We Do</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Our Core Services</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Recruitment</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients’ needs and goes on further for fulfillment.
-                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Recruitment -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                            <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Recruitment</h3>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients’ needs and goes on further for fulfillment.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Training and Development -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                            <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-person-chalkboard"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Training and Development</h3>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    ARRANT HR Solutions follows a meticulous deal with the methods aimed to design and implement training. It must be separated from the “method” because it can be defined as a body of practices, procedures, and rules used by those who work following a “discipline".
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Career Counselling -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                            <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-compass"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Career Counselling</h3>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    ARRANT HR Solutions Creating room for self-exploration. Our Career Counselors don't just hand their clients the results of vocational tests. They get to know their clients and, most importantly, they give their clients the space to talk through the issues affecting their career and career choice.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Event Management -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                            <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Event Management</h3>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    ARRANT HR Solutions revolves around the capabilities of a tool, the number of events that can be processed per second, or the custom algorithm within the correlation engine that makes everything work (almost as if by magic). We look at the tool or tools that are displayed out in front of us and expect them to provide all of the capabilities that are needed, and then we check off all of the requirements one by one.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Digital Marketing -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden lg:col-span-2 xl:col-span-1">
+                            <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Digital Marketing</h3>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    ARRANT HR Solutions objective on this DM is to increase the number of visitors to your tech site or create awareness about your product or service, the journey will include nurturing those visitors into qualified leads.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Call to Action Banner inside Grid -->
+                        <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center text-center text-white transform hover:scale-[1.02] transition-transform duration-300">
+                            <i class="fa-solid fa-rocket text-4xl mb-4 opacity-80"></i>
+                            <h3 class="text-2xl font-bold mb-4">Ready to Elevate Your Team?</h3>
+                            <p class="mb-6 opacity-90 text-sm">Discover our full suite of professional services tailored to your exact business requirements.</p>
+                            <button onclick="navigateTo('services')" class="px-8 py-3 bg-white text-navy-900 rounded-full font-bold hover:bg-gray-100 hover:shadow-lg transition-all duration-300">
+                                View All Services <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Training and Development -->
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-person-chalkboard"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Training and Development</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        ARRANT HR Solutions follows a meticulous deal with the methods aimed to design and implement training. It must be separated from the “method” because it can be defined as a body of practices, procedures, and rules used by those who work following a “discipline".
-                    </p>
-                </div>
-            </div>
-
-            <!-- Career Counselling -->
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-compass"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Career Counselling</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        ARRANT HR Solutions Creating room for self-exploration. Our Career Counselors don't just hand their clients the results of vocational tests. They get to know their clients and, most importantly, they give their clients the space to talk through the issues affecting their career and career choice.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Event Management -->
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Event Management</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        ARRANT HR Solutions revolves around the capabilities of a tool, the number of events that can be processed per second, or the custom algorithm within the correlation engine that makes everything work (almost as if by magic). We look at the tool or tools that are displayed out in front of us and expect them to provide all of the capabilities that are needed, and then we check off all of the requirements one by one.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Digital Marketing -->
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-300 group cursor-pointer relative overflow-hidden lg:col-span-2 xl:col-span-1">
-                <div class="absolute inset-0 bg-brandBlue-50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-                <div class="relative z-10">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-xl shadow-sm flex items-center justify-center text-brandBlue-500 text-3xl mb-6 group-hover:scale-110 group-hover:bg-brandBlue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-brandBlue-600 transition-colors">Digital Marketing</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">
-                        ARRANT HR Solutions objective on this DM is to increase the number of visitors to your tech site or create awareness about your product or service, the journey will include nurturing those visitors into qualified leads.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Call to Action Banner inside Grid -->
-            <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center text-center text-white transform hover:scale-[1.02] transition-transform duration-300">
-                <i class="fa-solid fa-rocket text-4xl mb-4 opacity-80"></i>
-                <h3 class="text-2xl font-bold mb-4">Ready to Elevate Your Team?</h3>
-                <p class="mb-6 opacity-90 text-sm">Discover our full suite of professional services tailored to your exact business requirements.</p>
-                <button onclick="navigateTo('services')" class="px-8 py-3 bg-white text-navy-900 rounded-full font-bold hover:bg-gray-100 hover:shadow-lg transition-all duration-300">
-                    View All Services <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
         </section>
 
-        <!-- ABOUT SECTION (Updated Content) -->
+        <!-- ABOUT SECTION -->
         <section id="about" class="page-section">
             <div class="bg-gray-50 py-16 lg:py-24">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -343,8 +366,8 @@
                     <!-- Leadership Profile -->
                     <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 mb-16 flex flex-col md:flex-row gap-8 items-center md:items-start">
                        <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-4 border-brandBlue-100 flex items-center justify-center shadow-inner">
-    <img src="ceo-photo.jpg" alt="Dr. Anusha Ursula" class="w-full h-full object-cover">
-</div>
+                            <img src="ceo-photo.jpg" alt="Dr. Anusha Ursula" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200?text=CEO'">
+                        </div>
                         <div class="flex-grow">
                             <h3 class="text-3xl font-bold text-navy-900 mb-2">Dr. Anusha Ursula</h3>
                             <p class="text-brandBlue-600 font-semibold mb-4 text-lg"> Founder / CEO of ARRANT HR Solutions</p>
@@ -374,22 +397,39 @@
                    <!-- Team Member 1 Profile -->
                     <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 mb-16 flex flex-col md:flex-row gap-8 items-center md:items-start">
                        <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-4 border-brandBlue-100 flex items-center justify-center shadow-inner">
-                            <img src="prem anand.png" alt="Member 1 Name" class="w-full h-full object-cover text-gray-400 flex items-center justify-center">
+                            <img src="prem anand.png" alt="Dr. S. Premanand" class="w-full h-full object-cover text-gray-400 flex items-center justify-center" onerror="this.src='https://via.placeholder.com/200?text=Advisor'">
                         </div>
                         <div class="flex-grow">
-                            <h3 class="text-3xl font-bold text-navy-900 mb-2">Dr.Prem anand</h3>
-                            <p class="text-brandBlue-600 font-semibold mb-4 text-lg">Cheif Advisor/ Director</p>
-                            <p class="text-gray-600 leading-relaxed mb-6">
-                                [Insert a brief biographical description detailing this member's background, education, and professional experience.]
-                            </p>
+                            <h3 class="text-3xl font-bold text-navy-900 mb-2">Dr. S. Premanand</h3>
+                            <p class="text-brandBlue-600 font-semibold text-lg mb-1">Chief Advisor / Director</p>
+                            <p class="text-gray-500 font-medium text-sm mb-6">Professor | HRM & Skill Development Specialist | Author | Researcher | Corporate Trainer</p>
+                            
+                            <div class="space-y-4 mb-6">
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    Dr. S. Premanand is an accomplished professional with over <strong>20 years of multidisciplinary experience</strong> spanning Human Resource Management, higher education, skill development, entrepreneurship, and corporate training. He serves as a <strong>Professor at MAM School of Engineering</strong> and <strong>Guest Faculty at NIT, Trichy</strong>. He holds a <strong>Ph.D. in HRM/Knowledge Management</strong> alongside an M.Sc. in Psychology, M.Phil. in Management, and an MBA.
+                                </p>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    A notable contribution includes his work with the <strong>National Career Service (Govt. of India)</strong>, where he spearheaded <strong>45+ job fairs</strong> across Tamil Nadu and Andhra Pradesh, benefiting over <strong>73,000 job seekers</strong>. As an academic leader, he secured ₹16.30 lakh in AICTE grants for Entrepreneurship Development, authored 11 books, and delivered over 200 webinars.
+                                </p>
+                                <p class="text-gray-600 leading-relaxed text-sm">
+                                    Recognized for his outstanding contributions, he has been honored with several awards, including the <strong>Dr. APJ Abdul Kalam Award – Social Scientist</strong> and the <strong>Dr. APJ Abdul Kalam Legendary Best Teacher & Researcher Award 2024</strong>.
+                                </p>
+                            </div>
+
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="flex items-start gap-3">
-                                    <i class="fa-solid fa-briefcase text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight a key professional achievement or core responsibility here.</p>
+                                <div class="flex items-start gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <i class="fa-solid fa-lightbulb text-brandBlue-500 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-navy-900 text-sm mb-1">Professional Vision</h4>
+                                        <p class="text-xs text-gray-600 leading-relaxed">Connecting education with employability, skills with opportunity, and innovation with impact to create future-ready professionals.</p>
+                                    </div>
                                 </div>
-                                <div class="flex items-start gap-3">
-                                    <i class="fa-solid fa-award text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight another key professional achievement or core responsibility here.</p>
+                                <div class="flex items-start gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <i class="fa-solid fa-globe text-brandBlue-500 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-navy-900 text-sm mb-1">Global & National Roles</h4>
+                                        <p class="text-xs text-gray-600 leading-relaxed">ECO Ambassador (World Climate Forum), Evaluation Member AICTE NEAT Cell, and Life Member of NHRDN, NIPM, CCI, and ISTD.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -398,22 +438,22 @@
                     <!-- Team Member 2 Profile -->
                     <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 mb-16 flex flex-col md:flex-row gap-8 items-center md:items-start">
                        <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-4 border-brandBlue-100 flex items-center justify-center shadow-inner">
-                            <img src="deepa.png" alt="Member 2 Name" class="w-full h-full object-cover text-gray-400 flex items-center justify-center">
+                            <img src="deepa.png" alt="Deepa" class="w-full h-full object-cover text-gray-400 flex items-center justify-center" onerror="this.src='https://via.placeholder.com/200?text=CTO'">
                         </div>
                         <div class="flex-grow">
                             <h3 class="text-3xl font-bold text-navy-900 mb-2">Deepa</h3>
                             <p class="text-brandBlue-600 font-semibold mb-4 text-lg"> Chief Technology Officer</p>
                             <p class="text-gray-600 leading-relaxed mb-6">
-                                [Insert a brief biographical description detailing this member's background, education, and professional experience.]
+                                Driving technological innovation at Arrant HR Solutions, Deepa ensures our digital platforms and services are cutting-edge and seamlessly integrated.
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="flex items-start gap-3">
                                     <i class="fa-solid fa-briefcase text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight a key professional achievement or core responsibility here.</p>
+                                    <p class="text-sm text-gray-600">Spearheading digital transformation initiatives.</p>
                                 </div>
                                 <div class="flex items-start gap-3">
                                     <i class="fa-solid fa-award text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight another key professional achievement or core responsibility here.</p>
+                                    <p class="text-sm text-gray-600">Implementing robust IT architectures for data security.</p>
                                 </div>
                             </div>
                         </div>
@@ -422,22 +462,22 @@
                     <!-- Team Member 3 Profile -->
                     <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100 mb-16 flex flex-col md:flex-row gap-8 items-center md:items-start">
                        <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gray-100 flex-shrink-0 overflow-hidden border-4 border-brandBlue-100 flex items-center justify-center shadow-inner">
-                            <img src="divya.png" alt="Member 3 Name" class="w-full h-full object-cover text-gray-400 flex items-center justify-center">
+                            <img src="divya.png" alt="Divya" class="w-full h-full object-cover text-gray-400 flex items-center justify-center" onerror="this.src='https://via.placeholder.com/200?text=COO'">
                         </div>
                         <div class="flex-grow">
                             <h3 class="text-3xl font-bold text-navy-900 mb-2">Divya</h3>
                             <p class="text-brandBlue-600 font-semibold mb-4 text-lg"> Chief Operating Officer</p>
                             <p class="text-gray-600 leading-relaxed mb-6">
-                                [Insert a brief biographical description detailing this member's background, education, and professional experience.]
+                                Managing our day-to-day operations, Divya ensures smooth execution of all projects and exceptional client satisfaction across the board.
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="flex items-start gap-3">
                                     <i class="fa-solid fa-briefcase text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight a key professional achievement or core responsibility here.</p>
+                                    <p class="text-sm text-gray-600">Optimizing core business processes and operational efficiency.</p>
                                 </div>
                                 <div class="flex items-start gap-3">
                                     <i class="fa-solid fa-award text-brandBlue-500 mt-1"></i>
-                                    <p class="text-sm text-gray-600">Highlight another key professional achievement or core responsibility here.</p>
+                                    <p class="text-sm text-gray-600">Fostering cross-departmental collaboration and growth.</p>
                                 </div>
                             </div>
                         </div>
@@ -513,70 +553,66 @@
                         </div>
                     </div>
 
-                    
-                 <!-- Memberships & Affiliations with Logos -->
-                  <!-- Memberships & Affiliations with Logos -->
-<div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-100 text-center mb-16">
-    <h3 class="text-2xl font-bold text-navy-900 mb-8">Memberships & Affiliations</h3>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-start justify-center">
-        
-        <!-- Confederation of Indian Industry (CII) -->
-        <div class="flex flex-col items-center p-2 group cursor-default">
-            <div class="h-40 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
-                <!-- Replace 'src' with your actual image path, e.g., 'images/cii-logo.png' -->
-                <img src="cii.jpg" 
-                     alt="Confederation of Indian Industry" 
-                     class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
+                    <!-- Memberships & Affiliations with Logos -->
+                    <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-100 text-center mb-16">
+                        <h3 class="text-2xl font-bold text-navy-900 mb-8">Memberships & Affiliations</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-start justify-center">
+                            
+                            <!-- Confederation of Indian Industry (CII) -->
+                            <div class="flex flex-col items-center p-2 group cursor-default">
+                                <div class="h-40 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
+                                    <img src="cii.jpg" 
+                                         alt="Confederation of Indian Industry" 
+                                         class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='https://via.placeholder.com/150x100?text=CII'">
+                                </div>
+                                <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
+                                    Confederation of Indian Industry
+                                </h4>
+                            </div>
+
+                            <!-- Indian Society of Training and Development (ISTD) -->
+                            <div class="flex flex-col items-center p-2 group cursor-default">
+                                <div class="h-50 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
+                                    <img src="istd.png" 
+                                         alt="Indian Society of Training and Development" 
+                                         class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='https://via.placeholder.com/150x100?text=ISTD'">
+                                </div>
+                                <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
+                                    Indian Society of Training and Development
+                                </h4>
+                            </div>
+
+                            <!-- National Human Resource Development (NHRD) Trichy -->
+                            <div class="flex flex-col items-center p-2 group cursor-default">
+                                <div class="h-35 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
+                                    <img src="nhrd.png" 
+                                         alt="National Human Resource Development Trichy Chapter" 
+                                         class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='https://via.placeholder.com/150x100?text=NHRD'">
+                                </div>
+                                <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
+                                    National Human Resource Development<br>
+                                    <span class="text-xs text-gray-500 group-hover:text-brandBlue-400">Trichy Chapter</span>
+                                </h4>
+                            </div>
+
+                            <!-- Counsellor Council of India (CCI) -->
+                            <div class="flex flex-col items-center p-2 group cursor-default">
+                                <div class="h-35 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
+                                    <img src="cci.jpg" 
+                                         alt="Counsellor Council of India" 
+                                         class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100" onerror="this.src='https://via.placeholder.com/150x100?text=CCI'">
+                                </div>
+                                <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
+                                    Counsellor Council of India
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
-                Confederation of Indian Industry
-            </h4>
-        </div>
-
-        <!-- Indian Society of Training and Development (ISTD) -->
-        <div class="flex flex-col items-center p-2 group cursor-default">
-            <div class="h-50 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
-                <!-- Replace 'src' with your actual image path -->
-                <img src="istd.png" 
-                     alt="Indian Society of Training and Development" 
-                     class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
-            </div>
-            <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
-                Indian Society of Training and Development
-            </h4>
-        </div>
-
-        <!-- National Human Resource Development (NHRD) Trichy -->
-        <div class="flex flex-col items-center p-2 group cursor-default">
-            <div class="h-35 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
-                <!-- Replace 'src' with your actual image path -->
-                <img src="nhrd.png" 
-                     alt="National Human Resource Development Trichy Chapter" 
-                     class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
-            </div>
-            <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
-                National Human Resource Development<br>
-                <span class="text-xs text-gray-500 group-hover:text-brandBlue-400">Trichy Chapter</span>
-            </h4>
-        </div>
-
-        <!-- Counsellor Council of India (CCI) -->
-        <div class="flex flex-col items-center p-2 group cursor-default">
-            <div class="h-35 w-full bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center p-4 mb-4 group-hover:shadow-md group-hover:bg-white group-hover:border-brandBlue-200 transition-all duration-300">
-                <!-- Replace 'src' with your actual image path -->
-                <img src="cci.jpg" 
-                     alt="Counsellor Council of India" 
-                     class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
-            </div>
-            <h4 class="text-sm font-semibold text-navy-900 group-hover:text-brandBlue-500 transition-colors leading-tight">
-                Counsellor Council of India
-            </h4>
-        </div>
-
-    </div>
-</div>
-
         </section>
 
         <!-- SERVICES SECTION -->
@@ -589,69 +625,536 @@
                         <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Service 1: Recruitment -->
-    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
-        <img src="recruitment.png" alt="Recruitment" class="w-full h-56 object-cover">
-        <div class="p-8 flex-grow flex flex-col items-center text-center">
-            <h3 class="text-xl font-bold text-navy-900 mb-4">Recruitment</h3>
-            <p class="text-gray-600 leading-relaxed">
-                ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients' needs and goes on further for fulfillment.
-            </p>
-        </div>
-    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+                        <!-- Service 1: Recruitment -->
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <img src="recruitment.png" alt="Recruitment" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                            <div class="p-8 flex-grow flex flex-col items-center text-center">
+                                <h3 class="text-xl font-bold text-navy-900 mb-4">Recruitment</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    ARRANT HR Solutions follows a meticulous selection process which begins with a thorough understanding of the clients' needs and goes on further for fulfillment.
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Service 2: Training and Development -->
-    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
-        <img src="training.png" alt="Training and Development" class="w-full h-56 object-cover">
-        <div class="p-8 flex-grow flex flex-col items-center text-center">
-            <h3 class="text-xl font-bold text-navy-900 mb-4">Training and Development</h3>
-            <p class="text-gray-600 leading-relaxed">
-                We deal with methods aimed to design and implement training. It must be separated from the "method" because it is a body of practices, procedures, and rules for disciplines.
-            </p>
-        </div>
-    </div>
+                        <!-- Service 2: Training and Development -->
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <img src="training.png" alt="Training and Development" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                            <div class="p-8 flex-grow flex flex-col items-center text-center">
+                                <h3 class="text-xl font-bold text-navy-900 mb-4">Training and Development</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    We deal with methods aimed to design and implement training. It must be separated from the "method" because it is a body of practices, procedures, and rules for disciplines.
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Service 3: Career Counselling -->
-    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
-        <img src="career counselling.png" alt="Career Counselling" class="w-full h-56 object-cover">
-        <div class="p-8 flex-grow flex flex-col items-center text-center">
-            <h3 class="text-xl font-bold text-navy-900 mb-4">Career Counselling</h3>
-            <p class="text-gray-600 leading-relaxed">
-                Creating room for self-exploration. Our Career Counselors get to know their clients and give them the space to talk through issues affecting their career and choices.
-            </p>
-        </div>
-    </div>
+                        <!-- Service 3: Career Counselling -->
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <img src="career counselling.png" alt="Career Counselling" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                            <div class="p-8 flex-grow flex flex-col items-center text-center">
+                                <h3 class="text-xl font-bold text-navy-900 mb-4">Career Counselling</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Creating room for self-exploration. Our Career Counselors get to know their clients and give them the space to talk through issues affecting their career and choices.
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Service 4: Event Management -->
-    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
-        <img src="event management.png" alt="Event Management" class="w-full h-56 object-cover">
-        <div class="p-8 flex-grow flex flex-col items-center text-center">
-            <h3 class="text-xl font-bold text-navy-900 mb-4">Event Management</h3>
-            <p class="text-gray-600 leading-relaxed">
-                We look at the tools out in front of us and expect them to provide all capabilities needed, checking off all requirements to handle events seamlessly.
-            </p>
-        </div>
-    </div>
+                        <!-- Service 4: Event Management -->
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <img src="event management.png" alt="Event Management" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                            <div class="p-8 flex-grow flex flex-col items-center text-center">
+                                <h3 class="text-xl font-bold text-navy-900 mb-4">Event Management</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    We look at the tools out in front of us and expect them to provide all capabilities needed, checking off all requirements to handle events seamlessly.
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Service 5: Digital Marketing -->
-    <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
-        <img src="digital marketing.png" alt="Digital Marketing" class="w-full h-56 object-cover">
-        <div class="p-8 flex-grow flex flex-col items-center text-center">
-            <h3 class="text-xl font-bold text-navy-900 mb-4">Digital Marketing</h3>
-            <p class="text-gray-600 leading-relaxed">
-                Our objective is to increase visitors to your tech site or create awareness about your product/service. The journey includes nurturing visitors into qualified leads.
-            </p>
-        </div>
-    </div>
-    
-    <!-- Extra Card for Visual Balance -->
-    <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center text-white">
-        <h3 class="text-2xl font-bold mb-4">Need Custom Solutions?</h3>
-        <p class="mb-6 opacity-90">Let's discuss how we can tailor our services to fit your specific organizational needs.</p>
-        <button onclick="navigateTo('contact')" class="px-6 py-2 bg-white text-brandBlue-600 rounded-full font-semibold hover:bg-gray-100 transition">Contact Us</button>
-    </div>
-</div>
+                        <!-- Service 5: Digital Marketing -->
+                        <div class="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <img src="digital marketing.png" alt="Digital Marketing" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                            <div class="p-8 flex-grow flex flex-col items-center text-center">
+                                <h3 class="text-xl font-bold text-navy-900 mb-4">Digital Marketing</h3>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Our objective is to increase visitors to your tech site or create awareness about your product/service. The journey includes nurturing visitors into qualified leads.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Extra Card for Visual Balance -->
+                        <div class="bg-gradient-to-br from-brandBlue-500 to-navy-900 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center text-center text-white">
+                            <h3 class="text-2xl font-bold mb-4">Need Custom Solutions?</h3>
+                            <p class="mb-6 opacity-90">Let's discuss how we can tailor our services to fit your specific organizational needs.</p>
+                            <button onclick="navigateTo('contact')" class="px-6 py-2 bg-white text-brandBlue-600 rounded-full font-semibold hover:bg-gray-100 transition">Contact Us</button>
+                        </div>
+                    </div>
+
+                    <!-- SECTORS WE SERVE SECTION -->
+                    <div class="mt-24 bg-gray-50 rounded-3xl py-16 px-4 md:px-8 border border-gray-100 shadow-inner overflow-hidden">
+                        <div class="text-center mb-12 relative z-10">
+                            <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Industries</span>
+                            <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Sectors We Serve</h2>
+                            <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded mb-6"></div>
+                            <p class="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+                                We build better businesses. We help our clients identify and deliver bottom-line improvements across a diverse range of critical industries.
+                            </p>
+                        </div>
+
+                        <!-- Infinite Scrolling Marquee Rows (Slower, Colored Icons with Text Below) -->
+                        <div class="flex flex-col gap-6 relative">
+                            <!-- Gradient Masks for Fade Effect -->
+                            <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+
+                            <!-- Row 1: Scrolling Left -->
+                            <div class="flex overflow-hidden group marquee-wrapper gap-6">
+                                <div class="flex shrink-0 animate-marquee gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-tractor text-3xl text-green-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Agriculture</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shirt text-3xl text-pink-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Apparel</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-car text-3xl text-red-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Automotive</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-building-columns text-3xl text-blue-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">BFSI</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-spa text-3xl text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Beauty & Wellness</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-industry text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Capital Goods & Mfg</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-trowel text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Construction</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-microchip text-3xl text-teal-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Electronics & HW</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gem text-3xl text-cyan-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Gem & Jewellery</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-heart-pulse text-3xl text-red-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Healthcare</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-laptop-code text-3xl text-blue-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">IT-ITeS</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shoe-prints text-3xl text-yellow-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Leather</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-train text-3xl text-gray-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Railways</span>
+                                    </div>
+                                </div>
+                                <div aria-hidden="true" class="flex shrink-0 animate-marquee gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-tractor text-3xl text-green-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Agriculture</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shirt text-3xl text-pink-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Apparel</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-car text-3xl text-red-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Automotive</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-building-columns text-3xl text-blue-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">BFSI</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-spa text-3xl text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Beauty & Wellness</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-industry text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Capital Goods & Mfg</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-trowel text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Construction</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-microchip text-3xl text-teal-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Electronics & HW</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gem text-3xl text-cyan-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Gem & Jewellery</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-heart-pulse text-3xl text-red-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Healthcare</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-laptop-code text-3xl text-blue-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">IT-ITeS</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shoe-prints text-3xl text-yellow-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Leather</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-train text-3xl text-gray-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Railways</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Scrolling Right -->
+                            <div class="flex overflow-hidden group marquee-wrapper gap-6">
+                                <div class="flex shrink-0 animate-marquee-reverse gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-building text-3xl text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Real Estate</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-place-of-worship text-3xl text-yellow-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Religious Prof.</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-faucet text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Water & Waste Mgmt</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-film text-3xl text-purple-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Media & Entertainment</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-hard-hat text-3xl text-yellow-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Mining</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-store text-3xl text-orange-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Organised Retail</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-wrench text-3xl text-gray-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Plumbing</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-dna text-3xl text-green-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Life Sciences</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-broadcast-tower text-3xl text-sky-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Telecom</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-bell text-3xl text-red-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Tourism & Hospitality</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-truck-fast text-3xl text-amber-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Logistics</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-plane text-3xl text-sky-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Aerospace & Aviation</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-flask text-3xl text-purple-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Chemical & Petrochem</span>
+                                    </div>
+                                </div>
+                                <div aria-hidden="true" class="flex shrink-0 animate-marquee-reverse gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-building text-3xl text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Real Estate</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-place-of-worship text-3xl text-yellow-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Religious Prof.</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-faucet text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Water & Waste Mgmt</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-film text-3xl text-purple-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Media & Entertainment</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-hard-hat text-3xl text-yellow-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Mining</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-store text-3xl text-orange-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Organised Retail</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-wrench text-3xl text-gray-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Plumbing</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-dna text-3xl text-green-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Life Sciences</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-broadcast-tower text-3xl text-sky-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Telecom</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-bell text-3xl text-red-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Tourism & Hospitality</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-truck-fast text-3xl text-amber-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Logistics</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-plane text-3xl text-sky-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Aerospace & Aviation</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-flask text-3xl text-purple-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Chemical & Petrochem</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Scrolling Left -->
+                            <div class="flex overflow-hidden group marquee-wrapper gap-6">
+                                <div class="flex shrink-0 animate-marquee gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-graduation-cap text-3xl text-blue-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Education & Training</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-leaf text-3xl text-green-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Environmental Science</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-utensils text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Food & Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-wine-glass text-3xl text-red-300 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Glass & Ceramics</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-truck-pickup text-3xl text-yellow-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Infra Equipment</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gear text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Rubber Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-ship text-3xl text-blue-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Shipping</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-dumbbell text-3xl text-gray-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Sports & Fitness</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-palette text-3xl text-orange-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Handicrafts & Carpet</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-fire text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Hydrocarbon</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-cubes text-3xl text-gray-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Iron & Steel</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-balance-scale text-3xl text-amber-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Judiciary</span>
+                                    </div>
+                                </div>
+                                <div aria-hidden="true" class="flex shrink-0 animate-marquee gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-graduation-cap text-3xl text-blue-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Education & Training</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-leaf text-3xl text-green-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Environmental Science</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-utensils text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Food & Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-wine-glass text-3xl text-red-300 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Glass & Ceramics</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-truck-pickup text-3xl text-yellow-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Infra Equipment</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gear text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Rubber Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-ship text-3xl text-blue-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Shipping</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-dumbbell text-3xl text-gray-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Sports & Fitness</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-palette text-3xl text-orange-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Handicrafts & Carpet</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-fire text-3xl text-orange-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Hydrocarbon</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-cubes text-3xl text-gray-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Iron & Steel</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-balance-scale text-3xl text-amber-700 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Judiciary</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Row 4: Scrolling Right -->
+                            <div class="flex overflow-hidden group marquee-wrapper gap-6">
+                                <div class="flex shrink-0 animate-marquee-reverse gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gavel text-3xl text-amber-900 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Legal Activities</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-landmark text-3xl text-slate-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Legislators</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-music text-3xl text-pink-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Musical Instruments</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-briefcase text-3xl text-stone-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Office Admin</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-glasses text-3xl text-sky-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Optical Product</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-file-alt text-3xl text-amber-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Paper & Products</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-envelope text-3xl text-red-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Postal Services</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-bolt text-3xl text-yellow-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Power</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-print text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Printing</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shield-alt text-3xl text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Private Security</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-users text-3xl text-teal-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Public Admin</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-cut text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Textile & Handloom</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-smoking text-3xl text-gray-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Tobacco Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-hammer text-3xl text-amber-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Wood & Carpentry</span>
+                                    </div>
+                                </div>
+                                <div aria-hidden="true" class="flex shrink-0 animate-marquee-reverse gap-6 min-w-full justify-around items-center">
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-gavel text-3xl text-amber-900 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Legal Activities</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-landmark text-3xl text-slate-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Legislators</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-music text-3xl text-pink-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Musical Instruments</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-briefcase text-3xl text-stone-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Office Admin</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-glasses text-3xl text-sky-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Optical Product</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-file-alt text-3xl text-amber-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Paper & Products</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-envelope text-3xl text-red-500 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Postal Services</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-bolt text-3xl text-yellow-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Power</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-print text-3xl text-gray-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Printing</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-shield-alt text-3xl text-blue-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Private Security</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-users text-3xl text-teal-600 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Public Admin</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-cut text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Textile & Handloom</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-smoking text-3xl text-gray-400 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Tobacco Industry</span>
+                                    </div>
+                                    <div class="w-36 h-36 shrink-0 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center p-3 hover:border-brandBlue-300 hover:-translate-y-1 hover:shadow-md transition-all group cursor-default text-center">
+                                        <i class="fa-solid fa-hammer text-3xl text-amber-800 mb-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                        <span class="text-xs font-semibold text-navy-800 leading-tight">Wood & Carpentry</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                
                 </div>
             </div>
@@ -682,11 +1185,13 @@
                     <i class="fa-solid fa-id-card text-5xl text-brandBlue-500 mb-6"></i>
                     <h2 class="text-3xl font-bold text-navy-900 mb-4">Candidate Registration</h2>
                     <p class="text-gray-600 mb-8">Register with Arrant HR Solutions to stay updated on the latest job opportunities matching your profile.</p>
-                    <form class="space-y-4 text-left" onsubmit="event.preventDefault(); alert('Registration functionality will be implemented soon.');">
-                        <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
-                        <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
-                        <button type="submit" class="w-full py-3 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition">Register Now</button>
+                    <form id="register-form" class="space-y-4 text-left" onsubmit="event.preventDefault(); showMessage('Registration functionality will be implemented soon.', 'register-alert', '#register-form');">
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
+                        <button type="submit" class="w-full py-3 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition shadow">Register Now</button>
                     </form>
+                    <!-- Custom Alert Box for Register -->
+                    <div id="register-alert" class="hidden mt-4 p-4 bg-blue-50 text-brandBlue-600 rounded-lg text-center font-medium border border-blue-100"></div>
                 </div>
             </div>
         </section>
@@ -767,7 +1272,7 @@
                         <!-- Message Form -->
                         <div class="bg-gray-50 rounded-2xl p-8 md:p-10 shadow-sm border border-gray-200">
                             <h3 class="text-2xl font-bold text-navy-900 mb-6">Send us a Message</h3>
-                            <form class="space-y-6" onsubmit="event.preventDefault(); showMessage('Message sent successfully! We will get back to you shortly.');">
+                            <form id="contact-form" class="space-y-6" onsubmit="event.preventDefault(); showMessage('Message sent successfully! We will get back to you shortly.', 'contact-alert', '#contact-form');">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
                                     <input type="text" required class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:border-transparent transition-shadow">
@@ -789,7 +1294,7 @@
                                 </button>
                             </form>
                             <!-- Custom Alert Box (Hidden by default) -->
-                            <div id="form-alert" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg text-center font-medium"></div>
+                            <div id="contact-alert" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg text-center font-medium border border-green-200"></div>
                         </div>
                     </div>
                 </div>
@@ -994,19 +1499,26 @@
             statsObserver.observe(statsContainer);
         }
 
-        // Custom Message Box Function
-        function showMessage(msg) {
-            const alertBox = document.getElementById('form-alert');
-            alertBox.textContent = msg;
-            alertBox.classList.remove('hidden');
+        // Custom Message Box Function (Removes native alerts)
+        function showMessage(msg, alertId, formSelector) {
+            const alertBox = document.getElementById(alertId);
+            if(alertBox) {
+                alertBox.textContent = msg;
+                alertBox.classList.remove('hidden');
+                
+                // hide after 3 seconds
+                setTimeout(() => {
+                    alertBox.classList.add('hidden');
+                }, 3000);
+            }
             
-            // hide after 3 seconds
-            setTimeout(() => {
-                alertBox.classList.add('hidden');
-            }, 3000);
-            
-            // Reset form
-            document.querySelector('#contact form').reset();
+            // Reset form if provided
+            if(formSelector) {
+                const formElement = document.querySelector(formSelector);
+                if(formElement) {
+                    formElement.reset();
+                }
+            }
         }
 
         // Initialize Application
