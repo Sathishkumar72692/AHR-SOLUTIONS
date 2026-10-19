@@ -1160,38 +1160,239 @@
             </div>
         </section>
 
-        <!-- GALLERY SECTION (Placeholder) -->
+        <!-- GALLERY SECTION -->
         <section id="gallery" class="page-section">
-            <div class="py-24 bg-gray-50 min-h-[80vh] flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-images text-6xl text-gray-300 mb-6"></i>
-                <h2 class="text-3xl font-bold text-navy-900 mb-4">Our Gallery</h2>
-                <p class="text-gray-500 max-w-md mx-auto">Explore moments from our job fairs, training programs, and corporate events. Content coming soon.</p>
+            <div class="py-16 lg:py-24 bg-gray-50 min-h-[80vh]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center mb-16">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Our Impact in Action</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Photo Gallery</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                            Explore moments from our recent job fairs, training programs, corporate events, and team building sessions.
+                        </p>
+                    </div>
+
+                    <!-- Masonry Gallery Grid -->
+                    <div id="gallery-grid" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+                        <!-- Populated dynamically via JavaScript below -->
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- JOBS SECTION (Placeholder) -->
+        <!-- JOBS SECTION -->
         <section id="jobs" class="page-section">
-            <div class="py-24 bg-white min-h-[80vh] flex flex-col items-center justify-center text-center">
-                <i class="fa-solid fa-briefcase text-6xl text-gray-300 mb-6"></i>
-                <h2 class="text-3xl font-bold text-navy-900 mb-4">Current Openings</h2>
-                <p class="text-gray-500 max-w-md mx-auto">We are constantly looking for top talent. Check back later for our updated job listings board.</p>
+            <div class="py-16 lg:py-24 bg-white min-h-[80vh]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center mb-12">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Career Opportunities</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Current Openings</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                        <p class="text-gray-500 max-w-2xl mx-auto mt-6 text-lg">Browse our latest job postings and apply to take your next big career step.</p>
+                    </div>
+
+                    <!-- Admin Tool: Button to open "Add Poster" Modal -->
+                    <div class="flex justify-end mb-8">
+                        <button onclick="toggleAddPosterModal()" class="px-5 py-2.5 bg-navy-900 text-white rounded-lg text-sm font-semibold hover:bg-navy-800 transition-colors flex items-center gap-2 shadow-md">
+                            <i class="fa-solid fa-plus"></i> Add New Poster
+                        </button>
+                    </div>
+
+                    <!-- Job Posters Grid (Populated by JavaScript) -->
+                    <div id="job-posters-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Posters will dynamically render here -->
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Add Poster Modal overlay (Hidden by default) -->
+            <div id="add-poster-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center backdrop-blur-sm px-4">
+                <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative animate-slide-up">
+                    <button onclick="toggleAddPosterModal()" class="absolute top-4 right-5 text-gray-400 hover:text-red-500 transition-colors text-2xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <h3 class="text-2xl font-bold text-navy-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-file-image text-brandBlue-500"></i> Add Job Poster
+                    </h3>
+                    <form id="add-poster-form" onsubmit="handleAddNewPoster(event)">
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Job Title</label>
+                                <input type="text" id="poster-title" placeholder="e.g. Software Developer" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-brandBlue-500 focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Poster Image File Name</label>
+                                <input type="text" id="poster-img" placeholder="e.g. job-poster-1.png" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-brandBlue-500 focus:outline-none transition-colors">
+                                <p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-circle-info mr-1"></i>Ensure the image file is saved in the same folder as your HTML file.</p>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full mt-8 py-3.5 bg-brandBlue-500 text-white rounded-lg font-bold hover:bg-brandBlue-600 transition shadow-lg flex justify-center items-center gap-2">
+                            Publish Poster <i class="fa-solid fa-check"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
 
-        <!-- REGISTER SECTION (Placeholder) -->
+        <!-- REGISTER SECTION -->
         <section id="register" class="page-section">
-            <div class="py-24 bg-gray-50 min-h-[80vh] flex flex-col items-center justify-center text-center px-4">
-                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-xl w-full">
-                    <i class="fa-solid fa-id-card text-5xl text-brandBlue-500 mb-6"></i>
-                    <h2 class="text-3xl font-bold text-navy-900 mb-4">Candidate Registration</h2>
-                    <p class="text-gray-600 mb-8">Register with Arrant HR Solutions to stay updated on the latest job opportunities matching your profile.</p>
-                    <form id="register-form" class="space-y-4 text-left" onsubmit="event.preventDefault(); showMessage('Registration functionality will be implemented soon.', 'register-alert', '#register-form');">
-                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
-                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500">
-                        <button type="submit" class="w-full py-3 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition shadow">Register Now</button>
-                    </form>
-                    <!-- Custom Alert Box for Register -->
-                    <div id="register-alert" class="hidden mt-4 p-4 bg-blue-50 text-brandBlue-600 rounded-lg text-center font-medium border border-blue-100"></div>
+            <div class="py-16 lg:py-24 bg-gray-50 min-h-[80vh]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Header -->
+                    <div class="text-center mb-16">
+                        <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Join Our Network</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Registration Portal</h2>
+                        <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded"></div>
+                        <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                            Choose your profile type below to register with Arrant HR Solutions.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        
+                        <!-- Job Seekers Registration -->
+                        <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-14 h-14 bg-brandBlue-50 rounded-xl flex items-center justify-center text-brandBlue-600 text-2xl flex-shrink-0">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-navy-900">Job Seekers Registration</h3>
+                                    <p class="text-gray-500 text-sm mt-1">Find your next big career opportunity.</p>
+                                </div>
+                            </div>
+                            
+                            <form id="seeker-form" class="space-y-5 flex-grow" onsubmit="event.preventDefault(); showMessage('Job Seeker registration successful!', 'seeker-alert', '#seeker-form');">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input type="text" placeholder="e.g. John" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input type="text" placeholder="e.g. Doe" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" placeholder="john@example.com" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input type="tel" placeholder="+91 XXXXXXXXXX" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                                        <input type="number" min="18" max="100" placeholder="e.g. 25" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                        <input type="date" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors text-gray-600">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                                        <select required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors text-gray-600">
+                                            <option value="" disabled selected>Select Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Highest Educational Qualification</label>
+                                    <input type="text" placeholder="e.g. B.Tech / MBA" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Location</label>
+                                    <input type="text" placeholder="e.g. Chennai, Tamil Nadu" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Resume Upload</label>
+                                    <input type="file" accept=".pdf,.doc,.docx" required class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 focus:bg-white transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-brandBlue-100 file:text-brandBlue-700 hover:file:bg-brandBlue-200 cursor-pointer">
+                                    <p class="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (Max 5MB)</p>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 mt-4 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
+                                    Register as Job Seeker <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </form>
+                            <div id="seeker-alert" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg text-center font-medium border border-green-200"></div>
+                        </div>
+
+                        <!-- Job Providers Registration -->
+                        <div class="bg-navy-900 p-8 md:p-10 rounded-2xl shadow-lg border border-navy-800 h-full flex flex-col relative overflow-hidden">
+                            <!-- Background decoration -->
+                            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-brandBlue-600 rounded-full opacity-10 blur-2xl"></div>
+                            
+                            <div class="flex items-center gap-4 mb-8 relative z-10">
+                                <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-brandBlue-400 text-2xl flex-shrink-0">
+                                    <i class="fa-solid fa-building-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Job Providers Registration</h3>
+                                    <p class="text-gray-400 text-sm mt-1">Partner with us to find the right talent.</p>
+                                </div>
+                            </div>
+                            
+                            <form id="provider-form" class="space-y-5 flex-grow relative z-10" onsubmit="event.preventDefault(); showMessage('Job Provider registration successful!', 'provider-alert', '#provider-form');">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Agency Name</label>
+                                        <input type="text" placeholder="Agency Name" class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Company Name <span class="text-red-400">*</span></label>
+                                        <input type="text" placeholder="Company Name" required class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Type of Job <span class="text-red-400">*</span></label>
+                                    <input type="text" placeholder="e.g. Full-time, Contract, Remote" required class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Location <span class="text-red-400">*</span></label>
+                                    <input type="text" placeholder="Job Location" required class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-1">Job Description <span class="text-red-400">*</span></label>
+                                    <textarea rows="3" placeholder="Briefly describe the role, requirements, and responsibilities..." required class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500 resize-none"></textarea>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Last Date to Apply</label>
+                                        <input type="date" class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500 [color-scheme:dark]">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Contact Information <span class="text-red-400">*</span></label>
+                                        <input type="text" placeholder="Email or Phone" required class="w-full px-4 py-2.5 bg-navy-800 border border-navy-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brandBlue-500 transition-colors placeholder-gray-500">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 mt-4 bg-brandBlue-500 text-white font-bold rounded-lg hover:bg-brandBlue-600 transition shadow-md hover:shadow-lg flex justify-center items-center gap-2">
+                                    Register as Job Provider <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </form>
+                            <div id="provider-alert" class="hidden mt-4 p-4 bg-green-900/50 text-green-200 rounded-lg text-center font-medium border border-green-800 relative z-10"></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -1388,26 +1589,22 @@
 
         // Navigation Logic (SPA Routing)
         function navigateTo(pageId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(sec => {
                 sec.classList.remove('active');
             });
 
-            // Show target section
             const target = document.getElementById(pageId);
             if (target) {
                 target.classList.add('active');
             }
 
-            // Update Desktop Nav Links Active State
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 link.classList.remove('text-brandBlue-500', 'font-semibold');
                 link.classList.add('text-gray-600');
                 
-                // Compare href to pageId
                 if (link.getAttribute('href') === '#' + pageId) {
                     link.classList.add('active');
                     link.classList.remove('text-gray-600');
@@ -1415,10 +1612,9 @@
                 }
             });
 
-            // Update Mobile Nav Links Active State
             const mobileLinks = document.querySelectorAll('.mobile-nav-link');
             mobileLinks.forEach(link => {
-                if(!link.classList.contains('bg-brandBlue-500')) { // skip the styled contact button
+                if(!link.classList.contains('bg-brandBlue-500')) {
                     link.classList.remove('text-brandBlue-500', 'bg-gray-50');
                     link.classList.add('text-gray-700');
                     if (link.getAttribute('href') === '#' + pageId) {
@@ -1428,17 +1624,14 @@
                 }
             });
 
-            // Close Mobile Menu if open
             if (menu.classList.contains('open')) {
                 menu.classList.remove('open');
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
             }
 
-            // Scroll to top of the page smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // If navigating to home, reset and re-trigger counters
             if(pageId === 'home') {
                 resetCounters();
             }
@@ -1446,16 +1639,14 @@
 
         // Animated Statistics Counter Logic using Intersection Observer
         const counters = document.querySelectorAll('.counter');
-        const speed = 200; // The lower the slower
+        const speed = 200;
 
         function startCounters() {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 const inc = target / speed;
-
                 let count = 0;
                 
-                // Ensure it counts up smoothly
                 const updateCount = () => {
                     count += inc;
                     if (count < target) {
@@ -1476,11 +1667,10 @@
              });
         }
 
-        // Observe when the stats section is in view
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.5 // Trigger when 50% visible
+            threshold: 0.5
         };
 
         const statsObserver = new IntersectionObserver((entries, observer) => {
@@ -1493,26 +1683,23 @@
             });
         }, observerOptions);
 
-        // Target the stats container to observe
         const statsContainer = document.getElementById('stats-container');
         if(statsContainer) {
             statsObserver.observe(statsContainer);
         }
 
-        // Custom Message Box Function (Removes native alerts)
+        // Custom Message Box Function
         function showMessage(msg, alertId, formSelector) {
             const alertBox = document.getElementById(alertId);
             if(alertBox) {
                 alertBox.textContent = msg;
                 alertBox.classList.remove('hidden');
                 
-                // hide after 3 seconds
                 setTimeout(() => {
                     alertBox.classList.add('hidden');
                 }, 3000);
             }
             
-            // Reset form if provided
             if(formSelector) {
                 const formElement = document.querySelector(formSelector);
                 if(formElement) {
@@ -1521,8 +1708,86 @@
             }
         }
 
+        // Future-Proof Job Posters Array Configuration
+        const initialJobPosters = [
+            { title: "Software Engineer", img: "job-poster-1.png" },
+            { title: "HR Executive", img: "job-poster-2.png" },
+            { title: "Marketing Manager", img: "job-poster-3.png" }
+        ];
+
+        function renderJobPosters() {
+            const grid = document.getElementById('job-posters-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = ''; 
+            
+            initialJobPosters.forEach((poster) => {
+                const posterCard = `
+                    <div class="bg-white rounded-2xl overflow-hidden shadow border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col relative">
+                        <div class="relative h-96 w-full bg-gray-100 overflow-hidden">
+                            <img src="${poster.img}" alt="${poster.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <button onclick="navigateTo('register')" class="px-8 py-3 bg-brandBlue-500 text-white rounded-full font-bold shadow-lg hover:bg-brandBlue-600 transform translate-y-8 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                                    Apply Now <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5 text-center border-t border-gray-100 bg-white z-10">
+                            <h3 class="text-xl font-bold text-navy-900">${poster.title}</h3>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', posterCard);
+            });
+        }
+
+        function toggleAddPosterModal() {
+            const modal = document.getElementById('add-poster-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function handleAddNewPoster(event) {
+            event.preventDefault();
+            
+            const titleInput = document.getElementById('poster-title').value;
+            const imgInput = document.getElementById('poster-img').value;
+            
+            initialJobPosters.unshift({ 
+                title: titleInput, 
+                img: imgInput 
+            });
+            
+            renderJobPosters();
+            toggleAddPosterModal();
+            event.target.reset();
+            
+            alert(`Success! "${titleInput}" has been added to the Job Board.`);
+        }
+
         // Initialize Application
         window.onload = () => {
+            // Render default gallery images
+            const galleryGrid = document.getElementById('gallery-grid');
+            if (galleryGrid) {
+                let galleryHTML = '';
+                for (let i = 1; i <= 54; i++) {
+                    galleryHTML += `
+                        <div class="break-inside-avoid rounded-2xl overflow-hidden group relative shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
+                            <img src="gallery (${i}).png" loading="lazy" alt="Event Moment ${i}" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700 bg-gray-200" onerror="this.src='https://via.placeholder.com/600x400?text=Gallery+Image+${i}'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div>
+                                    <h4 class="text-white font-bold text-lg leading-tight mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Event Moment ${i}</h4>
+                                    <p class="text-brandBlue-300 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Arrant HR Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                galleryGrid.innerHTML = galleryHTML;
+            }
+
+            renderJobPosters();
+
             const hash = window.location.hash.replace('#', '');
             if (hash && document.getElementById(hash)) {
                 navigateTo(hash);
