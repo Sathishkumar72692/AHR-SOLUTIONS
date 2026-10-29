@@ -129,6 +129,7 @@
                     <a href="#gallery" onclick="navigateTo('gallery'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Gallery</a>
                     <a href="#jobs" onclick="navigateTo('jobs'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Jobs</a>
                     <a href="#register" onclick="navigateTo('register'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Register Now</a>
+                    <a href="#counselling" onclick="navigateTo('counselling'); return false;" class="nav-link relative text-gray-600 hover:text-brandBlue-500 transition-colors py-2">Counselling</a>
                     <a href="#contact" onclick="navigateTo('contact'); return false;" class="px-5 py-2.5 bg-brandBlue-500 text-white rounded-full hover:bg-brandBlue-600 transition-colors shadow-md hover:shadow-lg font-medium">Contact Us</a>
                 </div>
 
@@ -150,6 +151,7 @@
                 <a href="#gallery" onclick="navigateTo('gallery'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Gallery</a>
                 <a href="#jobs" onclick="navigateTo('jobs'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Jobs</a>
                 <a href="#register" onclick="navigateTo('register'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Register Now</a>
+                <a href="#counselling" onclick="navigateTo('counselling'); return false;" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brandBlue-500 hover:bg-gray-50">Counselling</a>
                 <a href="#contact" onclick="navigateTo('contact'); return false;" class="mobile-nav-link block px-3 py-3 mt-2 rounded-md text-base font-medium bg-brandBlue-500 text-white text-center shadow">Contact Us</a>
             </div>
         </div>
@@ -1207,13 +1209,6 @@
                         <p class="text-gray-500 max-w-2xl mx-auto mt-6 text-lg">Browse our latest job postings and apply to take your next big career step.</p>
                     </div>
 
-                    <!-- Admin Tool: Button to open "Add Poster" Modal -->
-                    <div class="flex justify-end mb-8">
-                        <button onclick="toggleAddPosterModal()" class="px-5 py-2.5 bg-navy-900 text-white rounded-lg text-sm font-semibold hover:bg-navy-800 transition-colors flex items-center gap-2 shadow-md">
-                            <i class="fa-solid fa-plus"></i> Add New Poster
-                        </button>
-                    </div>
-
                     <!-- Job Posters Grid (Populated by JavaScript) -->
                     <div id="job-posters-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Posters will dynamically render here -->
@@ -1410,6 +1405,85 @@
             </div>
         </section>
 
+        <!-- COUNSELLING SECTION -->
+        <section id="counselling" class="page-section">
+          <div class="bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-14 lg:py-20 min-h-[80vh]">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="text-center mb-10">
+                <span class="text-brandBlue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Know Yourself • Grow Forward</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4">Personal Growth & Career Counselling</h2>
+                <div class="w-20 h-1 bg-brandBlue-500 mx-auto rounded mb-5"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">Answer these 10 reflection questions to explore your work preferences, strengths, and areas you may want to develop. Your responses generate practical, supportive guidance.</p>
+              </div>
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-7 text-sm text-blue-900"><i class="fa-solid fa-circle-info mr-2"></i><strong>A helpful note:</strong> This is a self-reflection activity, not a psychological test. It cannot determine your character, diagnose a condition, or replace a qualified counsellor. There are no right or wrong answers.</div>
+              <form id="counselling-form" class="space-y-5">
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">1</span>When working with a team, what feels most natural to you?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q1" value="0" required><span class="text-gray-700 text-sm leading-relaxed">I listen and help everyone contribute.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q1" value="1" required><span class="text-gray-700 text-sm leading-relaxed">I take the lead and organise the work.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q1" value="2" required><span class="text-gray-700 text-sm leading-relaxed">I focus on my part and deliver independently.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q1" value="3" required><span class="text-gray-700 text-sm leading-relaxed">I share ideas and look for new approaches.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">2</span>When you face a stressful situation, what do you usually do?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q2" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Pause, breathe, and break it into steps.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q2" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Talk it through with someone I trust.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q2" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Act quickly and adjust as I go.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q2" value="3" required><span class="text-gray-700 text-sm leading-relaxed">I may feel overwhelmed, then regroup with time.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">3</span>How do you usually make an important decision?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q3" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Compare options and evidence carefully.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q3" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Consider how it affects people.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q3" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Trust my instincts and experience.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q3" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Ask others for perspectives, then decide.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">4</span>How do you respond to constructive feedback?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q4" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Look for practical ways to improve.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q4" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Ask questions so I understand it clearly.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q4" value="2" required><span class="text-gray-700 text-sm leading-relaxed">I need a little time to process it.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q4" value="3" required><span class="text-gray-700 text-sm leading-relaxed">I welcome it and try changes quickly.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">5</span>What motivates you most?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q5" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Learning and mastering new skills.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q5" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Helping people and making a difference.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q5" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Achieving goals and seeing progress.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q5" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Creating something original or solving puzzles.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">6</span>When a task feels difficult, what is your usual approach?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q6" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Keep trying different methods.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q6" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Make a plan and work through it.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q6" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Ask for guidance or collaborate.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q6" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Step back briefly, then return with fresh energy.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">7</span>How do you prefer to communicate?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q7" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Openly and directly.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q7" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Thoughtfully, after listening first.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q7" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Through clear written plans or details.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q7" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Casually, with room for brainstorming.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">8</span>How do you manage deadlines and responsibilities?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q8" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Plan ahead and track milestones.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q8" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Prioritise as things arise.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q8" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Work best with accountability or a partner.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q8" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Adapt my approach depending on the task.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">9</span>When something does not go as planned, what helps you most?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q9" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Review what happened and learn from it.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q9" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Encouragement and support from others.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q9" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Trying a different strategy straight away.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q9" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Taking a break before making the next move.</span></label>
+                </div></fieldset>
+                <fieldset class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 md:p-7"><legend class="font-bold text-navy-900 text-lg mb-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-brandBlue-600 text-sm mr-2">10</span>What would you most like to develop right now?</legend><div class="grid gap-3">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q10" value="0" required><span class="text-gray-700 text-sm leading-relaxed">Confidence and decision-making.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q10" value="1" required><span class="text-gray-700 text-sm leading-relaxed">Communication and teamwork.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q10" value="2" required><span class="text-gray-700 text-sm leading-relaxed">Consistency, focus, and time management.</span></label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 cursor-pointer transition"><input class="mt-1 accent-blue-600" type="radio" name="q10" value="3" required><span class="text-gray-700 text-sm leading-relaxed">Career direction and discovering my strengths.</span></label>
+                </div></fieldset>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center pt-3"><button type="submit" class="px-8 py-4 bg-brandBlue-500 hover:bg-brandBlue-600 text-white rounded-xl font-semibold shadow-lg transition"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Get My Guidance</button><button type="reset" id="counselling-reset" class="px-8 py-4 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl font-semibold transition">Start Again</button></div>
+              </form>
+              <div id="counselling-result" class="hidden mt-10 bg-white rounded-2xl border border-blue-100 shadow-xl p-6 md:p-8" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
         <!-- CONTACT SECTION -->
         <section id="contact" class="page-section">
             <div class="py-16 lg:py-24 bg-white min-h-[80vh]">
@@ -1600,6 +1674,55 @@
             }
         });
 
+
+        // Counselling reflection: supportive guidance, not a definitive character assessment.
+        const counsellingForm = document.getElementById('counselling-form');
+        if (counsellingForm) {
+            counsellingForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (!counsellingForm.reportValidity()) return;
+                const answers = new FormData(counsellingForm);
+                const selected = Array.from(answers.values()).map(Number);
+                const themes = {
+                    0: { title: 'The thoughtful collaborator', text: 'You may value listening, cooperation, and shared understanding. Keep making space for your own ideas too, and practise stating your needs clearly.' },
+                    1: { title: 'The organised planner', text: 'You may feel comfortable creating structure and working toward clear outcomes. Leave room for flexibility, and remember that a plan can be adjusted without being a failure.' },
+                    2: { title: 'The independent problem-solver', text: 'You may enjoy autonomy and taking ownership. Check in with others when useful; asking for a second perspective can strengthen rather than reduce your independence.' },
+                    3: { title: 'The curious innovator', text: 'You may be energised by ideas, experimentation, and fresh approaches. Pair creativity with small milestones so promising ideas can become achievable results.' }
+                };
+                const counts = [0,0,0,0];
+                selected.forEach((answer, i) => {
+                    // Each answer is an indicator of a preference, not a score of worth or character.
+                    counts[answer]++;
+                });
+                const top = Math.max(...counts);
+                const dominant = counts.map((n,i)=>({n,i})).filter(x=>x.n===top).map(x=>themes[x.i]);
+                const balanced = dominant.length > 1;
+                const growthTips = [
+                    'Choose one small goal for this week and write down the first action you can take.',
+                    'Ask a trusted person for specific feedback on one skill you want to improve.',
+                    'At the end of each day, note one thing that went well and one thing you learned.',
+                    'Break a challenging task into a 20-minute first step, then review your progress.'
+                ];
+                const tip = growthTips[selected.reduce((sum,v)=>sum+v,0) % growthTips.length];
+                const result = document.getElementById('counselling-result');
+                result.innerHTML = `
+                    <div class="flex items-center gap-3 mb-5"><div class="w-12 h-12 rounded-xl bg-blue-50 text-brandBlue-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-compass"></i></div><div><p class="text-sm uppercase tracking-wide text-brandBlue-600 font-bold">Your reflection summary</p><h3 class="text-2xl font-bold text-navy-900">A starting point for growth</h3></div></div>
+                    <p class="text-gray-600 mb-5">These are possible preferences suggested by your choices, not fixed labels. People respond differently across situations, and every style has strengths.</p>
+                    <h4 class="font-bold text-navy-900 mb-3">Themes to explore</h4>
+                    <div class="grid gap-3 mb-6">${dominant.map(item=>`<div class="p-4 rounded-xl bg-blue-50 border border-blue-100"><h5 class="font-bold text-navy-900 mb-1">${item.title}</h5><p class="text-sm text-gray-700 leading-relaxed">${item.text}</p></div>`).join('')}</div>
+                    <div class="rounded-xl border border-gray-200 p-5 mb-5"><h4 class="font-bold text-navy-900 mb-2"><i class="fa-solid fa-seedling text-green-600 mr-2"></i>Your next small step</h4><p class="text-gray-700">${tip}</p></div>
+                    <div class="rounded-xl bg-gray-50 p-5"><h4 class="font-bold text-navy-900 mb-2">Reflection prompts</h4><ul class="list-disc pl-5 space-y-2 text-sm text-gray-700"><li>Which part of this summary feels most like you, and which part does not?</li><li>What is one strength you can use more often at work or in study?</li><li>What specific support would help you make progress?</li></ul></div>
+                    <p class="text-xs text-gray-500 mt-5">Your answers are processed in this page in your browser and are not submitted to a server by this feature. For important career, relationship, or emotional concerns, consider speaking with a qualified counsellor.</p>
+                    <div class="mt-6 flex flex-wrap gap-3"><button type="button" onclick="window.print()" class="px-5 py-3 rounded-lg bg-navy-900 text-white font-semibold hover:bg-navy-800"><i class="fa-solid fa-print mr-2"></i>Print Summary</button><button type="button" onclick="document.getElementById('counselling-result').classList.add('hidden'); document.getElementById('counselling-form').scrollIntoView({behavior:'smooth'});" class="px-5 py-3 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50">Review Answers</button></div>`;
+                result.classList.remove('hidden');
+                result.scrollIntoView({behavior:'smooth', block:'start'});
+            });
+            counsellingForm.addEventListener('reset', function() {
+                const result = document.getElementById('counselling-result');
+                if (result) { result.classList.add('hidden'); result.innerHTML = ''; }
+            });
+        }
+
         // Navigation Logic (SPA Routing)
         function navigateTo(pageId) {
             const sections = document.querySelectorAll('.page-section');
@@ -1721,11 +1844,18 @@
             }
         }
 
-        // Future-Proof Job Posters Array Configuration
+        // Sample vacancy posters (illustrative roles and salary ranges; confirm before publishing)
         const initialJobPosters = [
-            { title: "Software Engineer", img: "job-poster-1.png" },
-            { title: "HR Executive", img: "job-poster-2.png" },
-            { title: "Marketing Manager", img: "job-poster-3.png" }
+            { title: "Software Engineer", img: "job-poster-1.svg" },
+            { title: "HR Executive", img: "job-poster-2.svg" },
+            { title: "Digital Marketing Executive", img: "job-poster-3.svg" },
+            { title: "Mechanical Design Engineer", img: "job-poster-4.svg" },
+            { title: "Accountant", img: "job-poster-5.svg" },
+            { title: "Customer Support Associate", img: "job-poster-6.svg" },
+            { title: "Talent Acquisition Specialist", img: "job-poster-7.svg" },
+            { title: "Sales Executive", img: "job-poster-8.svg" },
+            { title: "Civil Site Engineer", img: "job-poster-9.svg" },
+            { title: "Data Analyst", img: "job-poster-10.svg" }
         ];
 
         function renderJobPosters() {
@@ -1747,6 +1877,10 @@
                         </div>
                         <div class="p-5 text-center border-t border-gray-100 bg-white z-10">
                             <h3 class="text-xl font-bold text-navy-900">${poster.title}</h3>
+                            <p class="text-sm text-gray-500 mt-2">Sample vacancy poster</p>
+                            <button onclick="navigateTo('register')" class="mt-4 w-full px-5 py-3 bg-brandBlue-500 text-white rounded-lg font-semibold hover:bg-brandBlue-600 transition-colors">
+                                Apply / Register <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
                         </div>
                     </div>
                 `;
